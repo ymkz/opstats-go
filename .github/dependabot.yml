@@ -1,14 +1,14 @@
 version: 2
 updates:
-  - package-ecosystem: gomod
-    directory: /
+  - package-ecosystem: 'gomod'
+    directory: '/'
     schedule:
-      interval: weekly
-      time: 21:00
-      timezone: Asia/Tokyo
-  - package-ecosystem: github-actions
-    directory: /
+      interval: 'weekly'
+      time: '21:00'
+      timezone: 'Asia/Tokyo'
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: weekly
-      time: 21:00
-      timezone: Asia/Tokyo
+      interval: 'weekly'
+      time: '21:00'
+      timezone: 'Asia/Tokyo'
