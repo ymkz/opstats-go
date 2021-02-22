@@ -7,7 +7,7 @@ env:
   CI: true
   TZ: Asia/Tokyo
 jobs:
-  hello:
+  all:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
