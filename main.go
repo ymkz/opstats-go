@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/alexflint/go-arg"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 )
 
 func stringToFloat64(strList []string) []float64 {
@@ -61,7 +61,7 @@ func main() {
 	}
 
 	arg.MustParse(&args)
-	isTerminal := terminal.IsTerminal(int(os.Stdin.Fd()))
+	isTerminal := term.IsTerminal(int(os.Stdin.Fd()))
 
 	if isTerminal {
 		if len(args.File) == 0 {
@@ -80,8 +80,8 @@ func main() {
 	trimed := strings.Trim(string(input), "\n")
 
 	if len(trimed) == 0 {
-		fmt.Println("[ERROR] INPUT FILE IS INVALID")
-		os.Exit(1)
+		fmt.Println("[WARN] INPUT FILE IS INVALID FOR EMPTY")
+		os.Exit(0)
 	}
 
 	stringList := strings.Split(trimed, "\n")
