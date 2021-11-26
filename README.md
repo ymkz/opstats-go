@@ -12,4 +12,6 @@ opstats の Go 実装版。
 ```
 go run ./main.go --help
 go run ./main.go ./mock/mini
+
+make dev-file
 ```

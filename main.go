@@ -76,8 +76,17 @@ func main() {
 	}
 
 	input, _ := ioutil.ReadAll(reader)
-	stringList := strings.Split(strings.Trim(string(input), "\n"), "\n")
+
+	trimed := strings.Trim(string(input), "\n")
+
+	if len(trimed) == 0 {
+		fmt.Println("[ERROR] INPUT FILE IS INVALID")
+		os.Exit(1)
+	}
+
+	stringList := strings.Split(trimed, "\n")
 	floatList := stringToFloat64(stringList)
+
 	sort.Float64s(floatList)
 
 	if args.Min || args.Max || args.Avg || args.Med || len(args.Per) != 0 {
