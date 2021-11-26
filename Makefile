@@ -3,7 +3,7 @@ dev-file:
 	go run ./main.go ./mock/huge
 	go run ./main.go ./mock/empty
 dev-pipe:
-	seq 10 | awk '{ print rand() }' | deno run ./src/main.ts
+	seq 10 | awk '{ print rand() }' | go run ./main.go
 lint:
 	gofmt -l .
 test:
