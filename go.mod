@@ -3,7 +3,7 @@ module github.com/ymkz/opstats-go
 go 1.17
 
 require (
-	github.com/alexflint/go-arg v1.3.0
+	github.com/alexflint/go-arg v1.4.2
 	golang.org/x/term v0.0.0-20201210144234-2321bbc49cbf
 )
 
