@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"math"
 	"os"
 	"sort"
 	"strconv"
@@ -46,6 +47,11 @@ func getPercentile(list []float64, n int) float64 {
 		return list[0]
 	}
 	k := len(list)*n/100 - 1
+
+	if k < 0 {
+		return math.NaN()
+	}
+
 	return list[k]
 }
 
@@ -76,14 +82,7 @@ func main() {
 	}
 
 	input, _ := ioutil.ReadAll(reader)
-
 	trimed := strings.Trim(string(input), "\n")
-
-	if len(trimed) == 0 {
-		fmt.Println("[WARN] INPUT FILE IS INVALID FOR EMPTY")
-		os.Exit(0)
-	}
-
 	stringList := strings.Split(trimed, "\n")
 	floatList := stringToFloat64(stringList)
 
