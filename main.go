@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"math"
 	"os"
 	"sort"
 	"strconv"
@@ -15,9 +16,15 @@ import (
 
 func stringToFloat64(strList []string) []float64 {
 	floatList := make([]float64, len(strList))
+
 	for index, str := range strList {
-		floatList[index], _ = strconv.ParseFloat(str, 64)
+		if str == "" {
+			floatList[index] = math.NaN()
+		} else {
+			floatList[index], _ = strconv.ParseFloat(str, 64)
+		}
 	}
+
 	return floatList
 }
 
@@ -31,9 +38,11 @@ func getMinimum(list []float64) float64 {
 
 func getAverage(list []float64) float64 {
 	sum := 0.0
+
 	for _, num := range list {
 		sum += num
 	}
+
 	return sum / float64(len(list))
 }
 
@@ -45,7 +54,13 @@ func getPercentile(list []float64, n int) float64 {
 	if n == 0 {
 		return list[0]
 	}
+
 	k := len(list)*n/100 - 1
+
+	if k < 0 {
+		return math.NaN()
+	}
+
 	return list[k]
 }
 
@@ -76,15 +91,7 @@ func main() {
 	}
 
 	input, _ := ioutil.ReadAll(reader)
-
-	trimed := strings.Trim(string(input), "\n")
-
-	if len(trimed) == 0 {
-		fmt.Println("[WARN] INPUT FILE IS INVALID FOR EMPTY")
-		os.Exit(0)
-	}
-
-	stringList := strings.Split(trimed, "\n")
+	stringList := strings.Split(strings.Trim(string(input), "\n"), "\n")
 	floatList := stringToFloat64(stringList)
 
 	sort.Float64s(floatList)
